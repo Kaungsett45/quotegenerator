@@ -16,6 +16,6 @@ react ,firebase more to get to know how to use useeffect and useState
 will include many other things and fix some function when i gain some exp with others project.
 
 # what func will inclu
--better search function
--categorize based on quote genre
+-better search function <br>
+-categorize based on quote genre<br>
 -add profile, will have your own quote , can add to fav and share others quote
