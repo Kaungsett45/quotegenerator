@@ -1,10 +1,13 @@
+#Ui of quotegenerator
+![quoteui](https://github.com/user-attachments/assets/bb1ed789-6ba3-4af5-859e-4502c452a29a)
+
 # quotegenerator
 
 In this QuoteGenerator project 
 
-we can Create quote based on author and their quote.
-also Include Favourite function which you can add your fav quote to your favourite.
-also add refresh button to refresh and get new quote.
+we can Create quote based on author and their quote.<br>
+also Include Favourite function which you can add your fav quote to your favourite.<br>
+also add refresh button to refresh and get new quote.<br>
 can search quote from the existing database if not found will show red text.
 
 # technologies
