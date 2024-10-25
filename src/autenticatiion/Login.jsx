@@ -3,7 +3,7 @@ import {useState } from 'react';
 import quitea from '/logo.svg'
 
 import { Link } from "react-router-dom";
-import rightcircle from '/rightcircle.svg'
+// import rightcircle from '/rightcircle.svg'
 export default function Login() {
 
 

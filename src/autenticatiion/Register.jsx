@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import quitea from "/logo.svg";
-import useSignup from "../Hooks/useSignup";
 import { useNavigate } from "react-router-dom";
+import Registernoti from '../noti/registernoti';
 
 export default function Register() {
   // Initialize useNavigate
-
-  let { error, loading, signup } = useSignup();
+    const [loading , setLoading] = useState(false);
+    const [error ,setError ] = useState('');
+    const [reginoti ,setReginoti] = useState(false);
 
   const [regform, setRegform] = useState({
     username: "",
@@ -16,9 +17,12 @@ export default function Register() {
   });
   const navigate = useNavigate();
   const registerUser = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault(e);
+    setLoading(true);
+    console.log ('loading' + loading);
+   
     try {
+     
       const response = await fetch("http://localhost:8080/register", {
         method: "POST",
         headers: {
@@ -28,22 +32,29 @@ export default function Register() {
       });
 
       // Check if the response is OK (status in the range 200-299)
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data.message); // Log the success message or handle it as needed
-        navigate("/"); // Parse the JSON response
-      
+   
+    
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Fetch succeeded, data:', data.message);
+          setReginoti(true);
       } else {
-        const errorData = await response.json(); // Get error response
-        console.error("Error:", errorData.error); // Log the error
+          const errorData = await response.json();
+          console.error("Error in response:", errorData.error);
       }
+       
+   
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
+    }finally {
+      setLoading(false);
+      console.log("Loading set to false in finally");
     }
   };
 
   return (
-    // overall-login-container
+   <>
+   
     <div className="">
       {/* logocontainer */}
       <div className="  my-20 flex justify-center">
@@ -109,13 +120,13 @@ export default function Register() {
             >
               {loading && (
                 <svg
-                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                 >
                   <circle
-                    class="opacity-25"
+                    className="opacity-25"
                     cx="12"
                     cy="12"
                     r="10"
@@ -123,7 +134,7 @@ export default function Register() {
                     stroke-width="4"
                   ></circle>
                   <path
-                    class="opacity-75"
+                    className="opacity-75"
                     fill="currentColor"
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
@@ -135,6 +146,12 @@ export default function Register() {
           {error && <p className="text-red-500">{error}</p>}
         </form>
       </div>
+        {reginoti &&(
+              <Registernoti noti={setreginoti}/>
+        )}
     </div>
+
+    </>
   );
+
 }
